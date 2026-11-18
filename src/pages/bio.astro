@@ -1,0 +1,75 @@
+---
+// Página /bio — link da bio do Instagram do Espaço Fairbanks.
+// Hero com imagem de fundo + segmentos (só texto) + botão para o site + formulário padrão.
+import Base from '../layouts/Base.astro';
+import FormContato from '../components/FormContato.astro';
+import config from '../../config.json';
+import '../styles/bio.css';
+
+const cdn = `${config.media.cdn_base}/photos`;
+const canonical = `https://${config.domain}/bio/`;
+const siteUrl = 'https://espacofairbanks.com.br/';
+const segmentos = ['Debutantes', 'Aniversários', 'Casamentos', 'Corporativos'];
+---
+
+<Base
+  title="Espaço Fairbanks | Celebre na Vila Olímpia"
+  description="Estrutura completa e gastronomia para tornar cada comemoração única, na Vila Olímpia (SP)."
+  ogImage={`${cdn}/hero_bio.webp`}
+  canonical={canonical}
+  favicon={`${cdn}/favicon.webp`}
+  appleTouchIcon={`${cdn}/apple-touch-icon.webp`}
+  hideWhatsApp={true}
+>
+  <Fragment slot="head">
+    <meta name="theme-color" content="#140510" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Noto+Serif:ital,wght@0,300;0,400;1,300;1,600&display=swap" rel="stylesheet" />
+  </Fragment>
+
+  <main>
+    <section class="bio-hero" aria-labelledby="bio-titulo">
+      <div class="bio-fundo" aria-hidden="true">
+        <img src={`${cdn}/hero_bio.webp`} alt="" fetchpriority="high" />
+      </div>
+      <div class="bio-veu" aria-hidden="true"></div>
+      <svg class="arco arco-b" viewBox="0 0 400 400" aria-hidden="true"><path d="M0 1 A399 399 0 0 1 399 400" pathLength="1" vector-effect="non-scaling-stroke"></path></svg>
+
+      <div class="bio-marca">
+        <img src={`${cdn}/logo-fairbanks.svg`} alt="Espaço Fairbanks" width="358" height="84" />
+      </div>
+
+      <div class="bio-conteudo">
+        <ul class="segmentos">
+          {segmentos.map((s) => <li>{s}</li>)}
+        </ul>
+        <h1 id="bio-titulo">
+          <span class="t-leve">O espaço ideal para celebrar</span>
+          <span class="t-destaque">na Vila Olímpia</span>
+        </h1>
+        <span class="traco-dourado" aria-hidden="true"></span>
+        <p class="bio-sub">Estrutura completa e gastronomia para tornar cada comemoração única</p>
+        <a class="btn btn-contorno" href={siteUrl} target="_blank" rel="noopener">Conheça o nosso site</a>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="contato-wrap">
+        <div class="contato-intro">
+          <h2><span class="t-leve">Fale com</span><span class="t-destaque">a nossa equipe</span></h2>
+          <p>Conte um pouco sobre os seus planos. Nossa equipe entrará em contato!</p>
+        </div>
+        <FormContato />
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape-wrap">
+      <img src={`${cdn}/logo-fairbanks.svg`} alt="Espaço Fairbanks" width="358" height="84" loading="lazy" />
+      <p class="rodape-direitos">Copyright © 2026 Fairbanks - Todos os direitos reservados</p>
+      <p class="rodape-credito">Desenvolvido por <a class="rodape-dmove" href="https://dmove.com.br" target="_blank" rel="noopener"><img src={`${cdn}/logo-dmove.webp`} alt="Dmove" width="600" height="134" loading="lazy" /></a></p>
+    </div>
+  </footer>
+</Base>

@@ -1,0 +1,40 @@
+{
+  "project_name": "Fairbanks Eventos",
+  "project_slug": "fairbanks",
+  "domain": "eventos.fairbanks.com.br",
+  "client": "Fairbanks",
+  "environment": "development",
+  "tracking": {
+    "gtm_id": "",
+    "enabled": true
+  },
+  "whatsapp": {
+    "phone": "5511900000000",
+    "display_name": "Fairbanks",
+    "avatar": "/images/whatsapp-avatar.jpg",
+    "enabled": false
+  },
+  "forms": {
+    "lead-form": {
+      "id": "lead-form",
+      "preset": "social",
+      "redirect_on_success": "",
+      "webhooks": [
+        "https://server3n8n.dmove.com.br/webhook/fairbanks"
+      ]
+    }
+  },
+  "media": {
+    "cdn_base": "https://media.dmove.com.br/clients/fairbanks"
+  },
+  "deploy": {
+    "user": "root",
+    "server": "157.173.197.116",
+    "remote_path": "/var/www/eventos.fairbanks.com.br"
+  },
+  "meta": {
+    "created_at": "2026-11-18",
+    "last_updated": "",
+    "owner": "Dmove"
+  }
+}

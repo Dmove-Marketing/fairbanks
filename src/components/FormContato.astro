@@ -1,0 +1,189 @@
+---
+// Formulário de captação da LP — padrão Dmove.
+// Campos, nomes, labels, obrigatoriedade e opções vêm do PRESET (config.json > forms.lead-form.preset);
+// aqui só há layout (ordem/classes do design do Claude Design) e textos de apoio.
+import config from '../../config.json';
+import { getPreset } from '../scripts/form-presets';
+
+const lead = config.forms['lead-form'];
+const preset = getPreset(lead.preset);
+
+// Ordem e grid do design. Campo que não estiver aqui (ex.: novo no preset) vai para o fim, em linha inteira.
+const ordem = ['empresa', 'nome', 'telefone', 'email', 'data_evento', 'convidados', 'tipo_evento', 'detalhes_adicionais'];
+const layout: Record<string, string> = {
+  empresa: 'campo-inteiro',
+  nome: 'campo-inteiro',
+  telefone: 'campo-inteiro-mobile',
+  email: 'campo-inteiro-mobile',
+  data_evento: '',
+  convidados: '',
+  tipo_evento: 'campo-inteiro',
+  detalhes_adicionais: 'campo-inteiro',
+};
+const pos = (name: string) => (ordem.indexOf(name) === -1 ? 99 : ordem.indexOf(name));
+const campos = [...preset].sort((a, b) => pos(a.name) - pos(b.name));
+
+// Placeholders do design que diferem do preset
+const placeholders: Record<string, string> = {
+  email: 'seu@email.com',
+  detalhes_adicionais: 'Conte o que você imagina para a sua festa',
+};
+// Atributos de UX por campo
+const extras: Record<string, Record<string, string>> = {
+  nome: { autocomplete: 'name' },
+  telefone: { autocomplete: 'tel', inputmode: 'tel' },
+  email: { autocomplete: 'email' },
+  convidados: { min: '1', step: '1', inputmode: 'numeric' },
+};
+// Opcional: valor do tipo de evento já selecionado (ex.: LP de 15 anos abre em "Aniversario debutante").
+// Sem a prop, o select abre no placeholder "Selecione o tipo de evento".
+interface Props {
+  tipoPadrao?: string;
+}
+const { tipoPadrao } = Astro.props;
+
+const attrsFor = (f: (typeof campos)[number]) => ({
+  ...(extras[f.name] || {}),
+  ...(f.datepicker ? { 'data-datepicker': '', maxlength: '10', inputmode: 'numeric', autocomplete: 'off' } : {}),
+});
+---
+
+<div class="contato-form">
+  <form
+    class="form-contato"
+    id="form-contato"
+    method="post"
+    action="#"
+    novalidate
+    data-form-id={lead.id}
+    data-project={config.project_slug}
+    data-submit-url={lead.webhooks[0]}
+    data-grid-id="form-contato"
+    data-success-id="form-sucesso"
+    data-redirect={lead.redirect_on_success || undefined}
+  >
+    {campos.map((f) => (
+      <div class={['campo', layout[f.name] ?? 'campo-inteiro'].filter(Boolean).join(' ')}>
+        <label for={`form-field-${f.name}`}>
+          {f.label}
+          {f.hint && <Fragment> <span class="opcional">({f.hint})</span></Fragment>}
+        </label>
+        {f.type === 'select' ? (
+          <select id={`form-field-${f.name}`} name={f.name} required={f.required}>
+            {(f.options || []).map((o) => (
+              <option value={o.value} disabled={o.disabled} selected={f.name === 'tipo_evento' && tipoPadrao ? o.value === tipoPadrao : o.selected}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        ) : f.type === 'textarea' ? (
+          <textarea id={`form-field-${f.name}`} name={f.name} rows="3" placeholder={placeholders[f.name] ?? f.placeholder} required={f.required} />
+        ) : (
+          <input
+            type={f.type}
+            id={`form-field-${f.name}`}
+            name={f.name}
+            placeholder={placeholders[f.name] ?? f.placeholder}
+            required={f.required}
+            {...attrsFor(f)}
+          />
+        )}
+      </div>
+    ))}
+
+    <!-- honeypot anti-bot: pessoas não veem nem preenchem -->
+    <div class="hp" aria-hidden="true">
+      <label for="form-field-website">Não preencha este campo</label>
+      <input type="text" id="form-field-website" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <p class="form-erro" id="contatoFormMsg" role="alert" style="display:none"></p>
+
+    <div class="form-acao">
+      <button type="submit" class="btn btn-primario form-submit">
+        <span class="btn-text">Enviar solicitação</span>
+        <span class="btn-loading" style="display:none">Enviando…</span>
+      </button>
+    </div>
+  </form>
+
+  <div class="form-sucesso" id="form-sucesso" role="status" aria-live="polite">
+    <span class="sucesso-icone" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+    </span>
+    <h3>Solicitação enviada!</h3>
+    <p>Recebemos os seus dados. Nossa equipe entrará em contato em breve para conversar sobre a sua festa.</p>
+  </div>
+</div>
+
+<script>
+  import { initForms } from '../scripts/forms';
+  import { initDatepickers } from '../scripts/form-datepicker';
+
+  initDatepickers();
+  initForms();
+</script>
+
+<style>
+  .contato-form { min-width: 0; }
+
+  /* rótulos do preset podem quebrar em 2 linhas no celular ("Número de convidados"):
+     alinha os campos da mesma linha pela base para os inputs não ficarem desencontrados */
+  .form-contato { align-items: end; }
+
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-erro {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.4;
+    color: #ff8f8f;
+  }
+
+  /* estado de sucesso: o forms.ts esconde o formulário e adiciona .active aqui */
+  .form-sucesso {
+    display: none;
+    text-align: center;
+    background: rgba(20, 5, 16, 0.66);
+    border: 1px solid rgba(216, 169, 109, 0.2);
+    border-radius: 6px;
+    padding: clamp(36px, 4vw, 56px) clamp(22px, 2.4vw, 32px);
+  }
+  .form-sucesso.active { display: block; }
+
+  .sucesso-icone {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    border: 1px solid var(--cor-dourado);
+  }
+  .sucesso-icone svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: var(--cor-dourado);
+    stroke-width: 1.6;
+  }
+  .form-sucesso h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 300;
+    font-size: clamp(26px, 2.4vw, 34px);
+    line-height: 1.15;
+    letter-spacing: 0;
+    color: var(--cor-perola);
+    margin-bottom: 12px;
+  }
+  .form-sucesso p { color: var(--cor-perola-suave); max-width: 34ch; margin: 0 auto; }
+
+  .btn-loading { align-items: center; justify-content: center; }
+</style>

@@ -1,0 +1,306 @@
+---
+// GERADO por tools/build-page.mjs a partir de design/debutantes.html
+import Base from '../layouts/Base.astro';
+import FormContato from '../components/FormContato.astro';
+import config from '../../config.json';
+import '../styles/debutantes.css';
+
+const cdn = `${config.media.cdn_base}/photos`;
+const canonical = `https://${config.domain}/debutantes/`;
+---
+
+<Base
+  title="Festa de 15 anos | Espaço Fairbanks"
+  description="Festa de 15 anos no Espaço Fairbanks, na Vila Olímpia (SP): estrutura completa, decoração personalizada, gastronomia própria e tecnologia para uma celebração inesquecível."
+  ogImage={`${cdn}/hero.webp`}
+  canonical={canonical}
+  favicon={`${cdn}/favicon.webp`}
+  appleTouchIcon={`${cdn}/apple-touch-icon.webp`}
+  hideWhatsApp={true}
+>
+  <Fragment slot="head">
+    <meta name="theme-color" content="#140510" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Noto+Serif:ital,wght@0,300;0,400;1,300;1,600&display=swap" rel="stylesheet" />
+  </Fragment>
+
+
+<!-- ===================== CABEÇALHO ===================== -->
+<header class="topo-site" id="cabecalho">
+  <div class="wrap topo-wrap">
+    <a href="#topo" class="marca">
+      <img src={`${cdn}/logo-fairbanks.svg`} alt="Espaço Fairbanks" width="358" height="84">
+    </a>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== HERO ===================== -->
+<section id="topo" class="hero" aria-labelledby="hero-titulo">
+  <div class="hero-midia">
+    <img src={`${cdn}/hero.webp`} alt="Salão do Espaço Fairbanks com pista de LED, lounge e mesas montadas para festa" fetchpriority="high">
+  </div>
+  <div class="hero-luz" aria-hidden="true"></div>
+  <div class="hero-veu" aria-hidden="true"></div>
+  <span class="arco-hero-topo" aria-hidden="true"></span>
+  <svg class="arco arco-hero-b" viewBox="0 0 400 400" aria-hidden="true"><path d="M0 1 A399 399 0 0 1 399 400" pathLength="1" vector-effect="non-scaling-stroke"/></svg>
+
+  <div class="wrap hero-conteudo">
+    <h1 id="hero-titulo">
+      <span class="linha linha-forte"><span>Seus 15 anos<br class="quebra-mobile"> merecem</span></span>
+      <span class="linha linha-leve"><span>uma festa com<br class="quebra-mobile"> a sua personalidade</span></span>
+    </h1>
+    <span class="traco-dourado" aria-hidden="true"></span>
+    <p class="hero-sub">Um espaço completo para transformar suas ideias em uma celebração inesquecível</p>
+    <a href="#contato" class="btn btn-primario">Quero conhecer o Fairbanks</a>
+  </div>
+</section>
+
+<!-- ===================== SOBRE ===================== -->
+<section id="sobre" class="secao">
+  <div class="wrap sobre-grid">
+    <div class="sobre-texto">
+      <h2><span class="t-destaque">Há quase 20 anos</span><span class="t-leve">transformando sonhos em realidade</span></h2>
+      <p class="texto texto-completo">Desde 2007, o Espaço Fairbanks recebe histórias<br class="quebra-desktop"> e comemorações especiais em um dos endereços<br class="quebra-desktop"> mais privilegiados da Vila Olímpia, em São Paulo.</p>
+      <p class="texto texto-completo">Com uma estrutura completa e uma equipe experiente,<br class="quebra-desktop"> unimos gastronomia, decoração e tecnologia<br class="quebra-desktop"> para criar festas que encantam em cada detalhe.</p>
+      <p class="texto texto-resumo">Desde 2007 na Vila Olímpia,<br> em São Paulo, o Espaço Fairbanks une<br> estrutura completa, equipe experiente,<br> gastronomia, decoração e tecnologia<br> em festas que encantam em cada detalhe.</p>
+    </div>
+    <div class="sobre-midia">
+      <div class="sobre-arco">
+        <div class="arco-moldura"><img src={`${cdn}/sobre-01.webp`} alt="Debutante de vestido bordô dançando na pista de LED do Espaço Fairbanks" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AMBIENTES | PERSONALIZAÇÃO ===================== -->
+<section id="ambientes" class="secao">
+  <div class="wrap">
+    <div class="bento">
+      <div class="bento-texto">
+        <h2><span class="t-leve">Uma festa que tem</span><span class="t-destaque">tudo a ver com você</span></h2>
+        <p class="texto">Da decoração à disposição dos ambientes,<br class="quebra-desktop quebra-mobile"> tudo pode ser personalizado do seu jeito.</p>
+      </div>
+      <button type="button" class="foto b-grande" data-grupo="ambientes"><img src={`${cdn}/ambientes-04.webp`} alt="Salão com iluminação lilás, lounge e pista de LED" loading="lazy"></button>
+      <button type="button" class="foto b-alta" data-grupo="ambientes"><img src={`${cdn}/ambientes-01.webp`} alt="Mesa de doces em tons de azul com candelabro e arranjos de rosas vermelhas" loading="lazy"></button>
+      <button type="button" class="foto b-1" data-grupo="ambientes"><img src={`${cdn}/ambientes-02.webp`} alt="Mesa de doces decorada com flores em tons de rosa e lilás" loading="lazy"></button>
+      <button type="button" class="foto b-2" data-grupo="ambientes"><img src={`${cdn}/ambientes-03.webp`} alt="Mesa redonda posta com arranjo de flores e louça dourada" loading="lazy"></button>
+      <button type="button" class="foto b-3" data-grupo="ambientes"><img src={`${cdn}/ambientes-05.webp`} alt="Salão com projeção de paisagem nas paredes e pista de LED" loading="lazy"></button>
+      <button type="button" class="foto b-4" data-grupo="ambientes"><img src={`${cdn}/ambientes-06.webp`} alt="Salão com lounge branco, mesas e pista de LED" loading="lazy"></button>
+    </div>
+    <div class="amb-mobile" data-amb-mobile>
+      <button type="button" class="amb-tela" aria-label="Ampliar foto">
+        <img class="ativa" src={`${cdn}/ambientes-04.webp`} alt="Salão com iluminação lilás, lounge e pista de LED" loading="lazy">
+        <img src={`${cdn}/ambientes-01.webp`} alt="Mesa de doces em tons de azul com candelabro e arranjos de rosas vermelhas" loading="lazy">
+        <img src={`${cdn}/ambientes-02.webp`} alt="Mesa de doces decorada com flores em tons de rosa e lilás" loading="lazy">
+        <img src={`${cdn}/ambientes-03.webp`} alt="Mesa redonda posta com arranjo de flores e louça dourada" loading="lazy">
+        <img src={`${cdn}/ambientes-05.webp`} alt="Salão com projeção de paisagem nas paredes e pista de LED" loading="lazy">
+        <img src={`${cdn}/ambientes-06.webp`} alt="Salão com lounge branco, mesas e pista de LED" loading="lazy">
+      </button>
+      <div class="amb-mini">
+        <button type="button" class="ativa" aria-label="Foto 1"><img src={`${cdn}/ambientes-04.webp`} alt="" loading="lazy"></button>
+        <button type="button" aria-label="Foto 2"><img src={`${cdn}/ambientes-01.webp`} alt="" loading="lazy"></button>
+        <button type="button" aria-label="Foto 3"><img src={`${cdn}/ambientes-02.webp`} alt="" loading="lazy"></button>
+        <button type="button" aria-label="Foto 4"><img src={`${cdn}/ambientes-03.webp`} alt="" loading="lazy"></button>
+        <button type="button" aria-label="Foto 5"><img src={`${cdn}/ambientes-05.webp`} alt="" loading="lazy"></button>
+        <button type="button" aria-label="Foto 6"><img src={`${cdn}/ambientes-06.webp`} alt="" loading="lazy"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PARALLAX 1 ===================== -->
+<section id="paralax-1" class="janela-fixa" aria-label="Debutante no Espaço Fairbanks">
+  <img src={`${cdn}/parallax-01.webp`} alt="Debutante de vestido azul em frente à mesa de doces, sob candelabro dourado" loading="lazy" data-janela>
+</section>
+
+<!-- ===================== INFRAESTRUTURA | TECNOLOGIA ===================== -->
+<section id="infraestrutura" class="secao">
+  <div class="wrap">
+    <div class="cabecalho-dividido">
+      <h2><span class="t-leve">A estrutura para fazer</span><span class="t-destaque">a festa acontecer</span></h2>
+      <p class="texto">Tecnologia para criar uma experiência<br class="quebra-mobile"> surpreendente do começo ao&nbsp;fim.</p>
+    </div>
+    <div class="estrutura-grid" data-estrutura>
+      <div class="estrutura-lista">
+        <button type="button" class="estrutura-item ativo" aria-pressed="true">Painel de LED</button>
+        <button type="button" class="estrutura-item" aria-pressed="false">Vídeo mapping</button>
+        <button type="button" class="estrutura-item" aria-pressed="false">Pista de dança</button>
+        <button type="button" class="estrutura-item" aria-pressed="false">Som e iluminação</button>
+      </div>
+      <div class="estrutura-tela">
+        <img class="ativa" src={`${cdn}/infra-painel-led.webp`} alt="Painel de LED vermelho com o nome da debutante sobre a pista espelhada" loading="lazy">
+        <img src={`${cdn}/infra-video-mapping.webp`} alt="Projeção de skyline nas paredes do salão durante o jantar" loading="lazy">
+        <img src={`${cdn}/infra-pista-de-danca.webp`} alt="Pista de dança de LED com escada iluminada ao fundo" loading="lazy">
+        <img src={`${cdn}/infra-som-e-iluminacao.webp`} alt="Mesa de som com iluminação de festa ao fundo" loading="lazy">
+      </div>
+    </div>
+    <!-- versão do celular: acordeão -->
+    <div class="estrutura-acordeao" data-acordeao>
+      <div class="ac-item aberto">
+        <button type="button" class="ac-botao" aria-expanded="true" aria-controls="ac-1">Painel de LED</button>
+        <div class="ac-corpo" id="ac-1"><div><img src={`${cdn}/infra-painel-led.webp`} alt="Painel de LED vermelho com o nome da debutante sobre a pista espelhada" loading="lazy"></div></div>
+      </div>
+      <div class="ac-item">
+        <button type="button" class="ac-botao" aria-expanded="false" aria-controls="ac-2">Vídeo mapping</button>
+        <div class="ac-corpo" id="ac-2"><div><img src={`${cdn}/infra-video-mapping.webp`} alt="Projeção de skyline nas paredes do salão durante o jantar" loading="lazy"></div></div>
+      </div>
+      <div class="ac-item">
+        <button type="button" class="ac-botao" aria-expanded="false" aria-controls="ac-3">Pista de dança</button>
+        <div class="ac-corpo" id="ac-3"><div><img src={`${cdn}/infra-pista-de-danca.webp`} alt="Pista de dança de LED com escada iluminada ao fundo" loading="lazy"></div></div>
+      </div>
+      <div class="ac-item">
+        <button type="button" class="ac-botao" aria-expanded="false" aria-controls="ac-4">Som e iluminação</button>
+        <div class="ac-corpo" id="ac-4"><div><img src={`${cdn}/infra-som-e-iluminacao.webp`} alt="Mesa de som com iluminação de festa ao fundo" loading="lazy"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GASTRONOMIA ===================== -->
+<section id="gastronomia" class="secao" data-pilha>
+  <div class="wrap gastro-grid">
+    <div class="gastro-texto">
+      <h2><span class="t-leve">Sabores que<span class="so-desktop-inline"> também</span></span><span class="t-destaque"><span class="so-mobile-inline">também </span>fazem parte<br class="quebra-mobile"> da celebração</span></h2>
+      <p class="texto">Com cozinha e buffet próprios,<br class="quebra-mobile"> cuidamos<br class="quebra-desktop"> da gastronomia para tornar<br class="quebra-mobile"> cada momento<br class="quebra-desktop"> ainda mais especial.</p>
+      <div class="gastro-ctrl">
+        <button type="button" class="seta" data-ant aria-label="Foto anterior"><svg viewBox="0 0 20 20"><path d="M12.5 4l-6 6 6 6"/></svg></button>
+        <span class="gastro-cont" aria-live="polite">01 / 06</span>
+        <button type="button" class="seta" data-prox aria-label="Próxima foto"><svg viewBox="0 0 20 20"><path d="M7.5 4l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="gastro-pilha">
+      <figure class="gastro-carta"><img src={`${cdn}/gastronomia-01.webp`} alt="Entrada de peixe servida em prato branco" loading="lazy"></figure>
+      <figure class="gastro-carta"><img src={`${cdn}/gastronomia-02.webp`} alt="Camarões servidos em colheres de degustação" loading="lazy"></figure>
+      <figure class="gastro-carta"><img src={`${cdn}/gastronomia-04.webp`} alt="Sobremesas servidas em copinhos" loading="lazy"></figure>
+      <figure class="gastro-carta"><img src={`${cdn}/gastronomia-03.webp`} alt="Prato principal de carne com risoto" loading="lazy"></figure>
+      <figure class="gastro-carta"><img src={`${cdn}/gastronomia-05.webp`} alt="Sobremesa cremosa servida em copo com biscoito" loading="lazy"></figure>
+      <figure class="gastro-carta"><img src={`${cdn}/gastronomia-06.webp`} alt="Entradas servidas em copinhos sobre bandeja espelhada" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PARALLAX 2 + FEEDBACK ===================== -->
+<div class="foto-continua" data-foto-continua>
+<div class="foto-continua-fundo" aria-hidden="true">
+  <img class="nitida" src={`${cdn}/parallax-02.webp`} alt="" loading="lazy">
+  <img class="desfocada" src={`${cdn}/parallax-02.webp`} alt="" loading="lazy">
+  <div class="foto-continua-veu"></div>
+</div>
+
+<section id="paralax-2" class="janela-vazia" role="img" aria-label="Salão decorado com balões prateados, lounge e pista de LED"></section>
+
+<section id="depoimentos">
+  <div class="wrap depo-wrap">
+    <h2 class="visualmente-oculto">Depoimentos</h2>
+    <span class="aspas" aria-hidden="true">“</span>
+    <div class="depo-palco">
+      <figure class="depo ativo" id="depo-1" role="tabpanel" aria-labelledby="tab-depo-1">
+        <blockquote><p><span class="frase">Fizemos a festa de 15&nbsp;anos<br class="quebra-mobile"> da minha filha e foi maravilhoso.</span> <span class="frase">A festa foi incrível,<br class="quebra-mobile"> a gastronomia<br class="quebra-desktop"> é de alto&nbsp;padrão<br class="quebra-mobile"> e a experiência diferenciada.</span> <span class="frase">A sensação que fica<br class="quebra-mobile"> é de termos feito<br class="quebra-desktop"> a melhor&nbsp;escolha<br class="quebra-mobile"> para esse dia tão&nbsp;especial.</span></p></blockquote>
+        <figcaption>Juliana Mazzeu Coimbra Ricciardi</figcaption>
+      </figure>
+      <figure class="depo" id="depo-2" role="tabpanel" aria-labelledby="tab-depo-2">
+        <blockquote><p><span class="frase">Realizamos a festa de 15&nbsp;anos<br class="quebra-mobile"> da nossa filha<br class="quebra-desktop"> e a experiência<br class="quebra-mobile"> foi impecável!</span> <span class="frase">Tudo foi preparado com muito&nbsp;carinho,<br class="quebra-desktop quebra-mobile"> dedicação e profissionalismo,</span> <span class="frase">tornando esse momento tão&nbsp;especial<br class="quebra-desktop quebra-mobile"> ainda mais inesquecível<br class="quebra-mobile"> para nossa&nbsp;família.</span></p></blockquote>
+        <figcaption>Alex</figcaption>
+      </figure>
+      <figure class="depo" id="depo-3" role="tabpanel" aria-labelledby="tab-depo-3">
+        <blockquote><p><span class="frase">Fiz a minha festa no espaço&nbsp;Fairbanks<br class="quebra-desktop quebra-mobile"> e foi a melhor&nbsp;escolha<br class="quebra-mobile"> que poderia ter feito.</span> <span class="frase">Desde o primeiro&nbsp;atendimento feito<br class="quebra-mobile"> pelo Felipe foi primoroso.</span> <span class="frase">A&nbsp;Dory, produtora,<br class="quebra-mobile"> é extremamente eficiente.</span></p></blockquote>
+        <figcaption>Claudia Bonomi</figcaption>
+      </figure>
+    </div>
+    <div class="depo-nav" role="tablist" aria-label="Escolha um depoimento">
+      <button type="button" role="tab" id="tab-depo-1" aria-controls="depo-1" aria-selected="true">Juliana</button>
+      <button type="button" role="tab" id="tab-depo-2" aria-controls="depo-2" aria-selected="false" tabindex="-1">Alex</button>
+      <button type="button" role="tab" id="tab-depo-3" aria-controls="depo-3" aria-selected="false" tabindex="-1">Claudia</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ===================== GALERIA ===================== -->
+<section id="galeria" class="galeria" aria-labelledby="galeria-titulo">
+  <div class="galeria-pin">
+    <div class="galeria-fixo">
+      <div class="wrap galeria-cabecalho">
+        <div class="cabecalho-dividido">
+          <h2 id="galeria-titulo"><span class="t-destaque">Inspire-se em festas</span><span class="t-leve">que já aconteceram<br class="quebra-mobile"> por&nbsp;aqui</span></h2>
+          <p class="texto">Explore alguns momentos e descubra<br class="quebra-desktop quebra-mobile"> as possibilidades para a sua festa.</p>
+        </div>
+      </div>
+      <div class="galeria-trilho" data-galeria>
+        <button type="button" class="galeria-item" data-grupo="galeria" style="--ar:3/2"><img src={`${cdn}/galeria-01.webp`} alt="Debutante de vestido lilás ao lado de arranjos de flores" loading="lazy"></button>
+        <button type="button" class="galeria-item" data-grupo="galeria" style="--ar:4/3"><img src={`${cdn}/galeria-02.webp`} alt="Salão com iluminação lilás e pista de LED" loading="lazy"></button>
+        <button type="button" class="galeria-item" data-grupo="galeria" style="--ar:3/2"><img src={`${cdn}/galeria-03.webp`} alt="Bolo azul-turquesa cercado de flores e doces" loading="lazy"></button>
+        <button type="button" class="galeria-item" data-grupo="galeria" style="--ar:4/3"><img src={`${cdn}/galeria-04.webp`} alt="Salão com o nome da debutante projetado e pista de LED" loading="lazy"></button>
+        <button type="button" class="galeria-item" data-grupo="galeria" style="--ar:3/2"><img src={`${cdn}/galeria-05.webp`} alt="Debutante em frente à mesa de doces sob candelabro" loading="lazy"></button>
+        <button type="button" class="galeria-item" data-grupo="galeria" style="--ar:3/2"><img src={`${cdn}/galeria-06.webp`} alt="Mesa de doces com cortinas e projeções ao fundo" loading="lazy"></button>
+        <button type="button" class="galeria-item" data-grupo="galeria" style="--ar:4/3"><img src={`${cdn}/galeria-07.webp`} alt="Pista de LED com escada iluminada e projeção da debutante" loading="lazy"></button>
+        <button type="button" class="galeria-item" data-grupo="galeria" style="--ar:16/9"><img src={`${cdn}/galeria-08.webp`} alt="Mesa de doces com flores e painel estrelado ao fundo" loading="lazy"></button>
+        <button type="button" class="galeria-item" data-grupo="galeria" style="--ar:16/9"><img src={`${cdn}/galeria-09.webp`} alt="Salão com projeção de floresta nas paredes" loading="lazy"></button>
+        <button type="button" class="galeria-item" data-grupo="galeria" style="--ar:3/2"><img src={`${cdn}/galeria-10.webp`} alt="Mesa de doces com bolo branco e arranjos de flores" loading="lazy"></button>
+      </div>
+      <!-- celular: fotos no formato stories (passam sozinhas; toque à direita avança, à esquerda volta, segurar pausa) -->
+      <div class="galeria-story" data-story role="region" aria-label="Fotos de festas realizadas">
+        <div class="story-barras" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+        <img class="story-foto ativa" src={`${cdn}/galeria-01.webp`} alt="Debutante de vestido lilás ao lado de arranjos de flores" style="object-position:45% 50%" loading="lazy">
+        <img class="story-foto" src={`${cdn}/galeria-02.webp`} alt="Salão com iluminação lilás e pista de LED" style="object-position:60% 50%" loading="lazy">
+        <img class="story-foto" src={`${cdn}/galeria-03.webp`} alt="Bolo azul-turquesa cercado de flores e doces" style="object-position:36% 50%" loading="lazy">
+        <img class="story-foto" src={`${cdn}/galeria-04.webp`} alt="Salão com o nome da debutante projetado e pista de LED" style="object-position:42% 50%" loading="lazy">
+        <img class="story-foto" src={`${cdn}/galeria-05.webp`} alt="Debutante em frente à mesa de doces sob candelabro" style="object-position:84% 50%" loading="lazy">
+        <img class="story-foto" src={`${cdn}/galeria-06.webp`} alt="Mesa de doces com cortinas e projeções ao fundo" style="object-position:42% 50%" loading="lazy">
+        <img class="story-foto" src={`${cdn}/galeria-07.webp`} alt="Pista de LED com escada iluminada e projeção da debutante" style="object-position:48% 50%" loading="lazy">
+        <img class="story-foto" src={`${cdn}/galeria-08.webp`} alt="Mesa de doces com flores e painel estrelado ao fundo" style="object-position:50% 50%" loading="lazy">
+        <img class="story-foto" src={`${cdn}/galeria-09.webp`} alt="Salão com projeção de floresta nas paredes" style="object-position:38% 50%" loading="lazy">
+        <img class="story-foto" src={`${cdn}/galeria-10.webp`} alt="Mesa de doces com bolo branco e arranjos de flores" style="object-position:50% 50%" loading="lazy">
+        <button type="button" class="story-zona story-ant" aria-label="Foto anterior"></button>
+        <button type="button" class="story-zona story-prox" aria-label="Próxima foto"></button>
+      </div>
+      <div class="wrap">
+        <div class="galeria-progresso" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FORMULÁRIO ===================== -->
+<section id="contato" class="secao">
+  <div class="contato-fundo" aria-hidden="true"><img src={`${cdn}/formulario.webp`} alt="" loading="lazy"></div>
+  <svg class="arco arco-contato" viewBox="0 0 400 400" aria-hidden="true"><path d="M1 0 A399 399 0 0 0 400 399" pathLength="1" vector-effect="non-scaling-stroke"/></svg>
+  <div class="wrap contato-grid">
+    <div class="contato-intro">
+      <h2><span class="t-destaque">Sua festa de 15 anos</span><span class="t-leve">merece o Fairbanks</span></h2>
+      <p class="texto">Conte um pouco sobre os seus planos.<br class="quebra-desktop quebra-mobile"> Nossa equipe entrará em&nbsp;contato!</p>
+    </div>
+
+    <FormContato tipoPadrao="Aniversario debutante" />
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== RODAPÉ ===================== -->
+<footer class="rodape">
+  <div class="wrap rodape-wrap">
+    <img src={`${cdn}/logo-fairbanks.svg`} alt="Espaço Fairbanks" width="358" height="84">
+    <p class="rodape-direitos">Copyright © 2026 Fairbanks - Todos os direitos reservados</p>
+    <p class="rodape-credito">Desenvolvido por <a class="rodape-dmove" href="https://dmove.com.br" target="_blank" rel="noopener"><img src={`${cdn}/logo-dmove.webp`} alt="Dmove" width="600" height="134" loading="lazy"></a></p>
+  </div>
+</footer>
+
+<!-- lightbox da galeria -->
+<dialog class="lightbox" id="lightbox" aria-label="Galeria de fotos">
+  <div class="lightbox-corpo">
+    <img src="" alt="">
+    <button type="button" class="lb-btn lb-fechar" aria-label="Fechar galeria"><svg viewBox="0 0 20 20"><path d="M4 4l12 12M16 4L4 16"/></svg></button>
+    <button type="button" class="lb-btn lb-ant" aria-label="Foto anterior"><svg viewBox="0 0 20 20"><path d="M12.5 4l-6 6 6 6"/></svg></button>
+    <button type="button" class="lb-btn lb-prox" aria-label="Próxima foto"><svg viewBox="0 0 20 20"><path d="M7.5 4l6 6-6 6"/></svg></button>
+    <p class="lb-contador" aria-live="polite"></p>
+  </div>
+</dialog>
+
+  <script>
+    import '../scripts/debutantes.js';
+  </script>
+</Base>
