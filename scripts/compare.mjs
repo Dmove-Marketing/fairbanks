@@ -28,7 +28,7 @@ const getArg  = (name) => { const e = args.find(a => a.startsWith(`--${name}=`))
 const hasFlag = (name) => args.includes(`--${name}`);
 
 const slug        = getArg('slug');
-const prodBase    = getArg('prod')      || `https://${config.deploy?.server || 'localhost'}`;
+const prodBase    = getArg('prod')      || `https://${config.domain || 'localhost'}`;
 const localBase   = getArg('local')     || 'http://localhost:4321';
 const threshold   = parseFloat(getArg('threshold') || '0.1');
 const onlyVP      = getArg('viewport'); // filtrar um viewport específico

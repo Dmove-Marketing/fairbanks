@@ -18,17 +18,16 @@ Preencha o `config.json` (dominio, GTM, webhook, WhatsApp, preset do formulario)
 
 ## Como publicar
 
-**Push na main salva no GitHub mas NAO publica o site.**
+O site e publicado no **Cloudflare Pages**, conectado a este repositorio (branch `main`). Cada push na `main` gera um novo deploy de producao; branches e PRs geram previews.
 
-Para colocar no ar, crie uma **Release** no GitHub (ou pelo terminal):
+Configuracao do projeto no Pages:
 
-```bash
-git tag v1.0.1
-git push origin v1.0.1
-gh release create v1.0.1 --title "v1.0.1" --notes "descricao do que mudou"
-```
+- **Build command:** `npm run build`
+- **Build output directory:** `dist`
+- **Variavel de ambiente:** `NODE_VERSION=22`
+- **Dominio personalizado:** `eventos.fairbanks.com.br`. A zona DNS do cliente fica fora da Cloudflare, entao o apontamento e um CNAME para o `*.pages.dev` do projeto, criado no DNS do cliente.
 
-O GitHub Actions builda e envia automaticamente para a VPS. Acompanhe na aba **Actions** do repositorio.
+`public/_redirects` (raiz `/` para `/debutantes/`) e `public/_headers` (cache e seguranca) sao copiados para o `dist/` e lidos pelo Pages.
 
 ---
 
@@ -36,7 +35,7 @@ O GitHub Actions builda e envia automaticamente para a VPS. Acompanhe na aba **A
 
 ### config.json — configuracao central
 
-Tudo que muda de cliente para cliente vive aqui: nome, GTM ID, WhatsApp, webhook dos leads, preset do formulario (social ou corporativo), dominio de deploy. Nenhum outro arquivo precisa ser editado para configurar um projeto novo.
+Tudo que muda de cliente para cliente vive aqui: nome, GTM ID, WhatsApp, webhook dos leads, preset do formulario (social ou corporativo). Nenhum outro arquivo precisa ser editado para configurar um projeto novo.
 
 ### Captacao de leads (formulario + WhatsApp)
 
@@ -72,18 +71,12 @@ Toda pagina usa o `Base.astro` que monta o `<head>` completo: SEO, Open Graph, c
 
 Quando o cliente tem mais de um funil (ex: casamentos + corporativo + debutantes), a raiz `/` vira uma home leve que pergunta o tipo de evento e direciona para a LP certa. Documentacao em `docs/home-triagem.md`.
 
-### Deploy automatico (GitHub Actions)
-
-O arquivo `.github/workflows/deploy.yml` dispara quando voce cria uma Release. Ele builda o projeto e envia o `dist/` para a VPS via rsync. Os secrets (`VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY`) estao configurados na org Dmove-Marketing — nenhum repo individual precisa de configuracao.
-
-O `deploy.mjs` ainda existe como fallback para deploy manual (`npm run deploy`).
-
 ---
 
 ## Estrutura do projeto
 
 ```
-config.json                  <- configuracao do cliente (GTM, WhatsApp, webhook, deploy)
+config.json                  <- configuracao do cliente (GTM, WhatsApp, webhook)
 src/
   layouts/Base.astro         <- layout obrigatorio (SEO, GTM, WhatsApp, fontes)
   pages/                     <- paginas do site (.astro)

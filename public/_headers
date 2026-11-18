@@ -1,0 +1,17 @@
+# Cloudflare Pages — cabeçalhos de cache e segurança
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Arquivos com hash no nome (Astro): cache imutável
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imagens e libs locais
+/images/*
+  Cache-Control: public, max-age=31536000
+/vendor/*
+  Cache-Control: public, max-age=31536000
+/fonts/*
+  Cache-Control: public, max-age=31536000
