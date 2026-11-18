@@ -72,7 +72,7 @@ h1,h2{font-family:var(--fonte-titulo);font-weight:300;margin:0;color:var(--cor-p
 .bio-hero{
   position:relative;isolation:isolate;overflow:hidden;text-align:center;
   min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;
-  padding:clamp(28px, 5vh, 48px) var(--margem) clamp(56px, 10vh, 96px);
+  padding:clamp(28px, 5vh, 48px) var(--margem) clamp(40px, 7vh, 72px);
 }
 .bio-fundo{position:absolute;inset:0;z-index:-2}
 .bio-fundo img{width:100%;height:100%;object-fit:cover;object-position:50% 55%;transform:scale(1.06);animation:zoom 2.6s var(--curva) forwards}
@@ -80,19 +80,22 @@ h1,h2{font-family:var(--fonte-titulo);font-weight:300;margin:0;color:var(--cor-p
 .bio-veu{
   position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(180deg,
-    rgba(20,5,16,.82) 0%, rgba(20,5,16,.42) 16%, rgba(20,5,16,.7) 36%,
-    rgba(20,5,16,.78) 58%, rgba(20,5,16,.93) 82%, rgba(20,5,16,1) 100%);
+    rgba(20,5,16,.82) 0%, rgba(20,5,16,.46) 12%, rgba(20,5,16,.72) 30%,
+    rgba(20,5,16,.8) 60%, rgba(20,5,16,.9) 85%, rgba(20,5,16,.96) 100%);
 }
 .bio-marca{display:block;flex:none}
 .bio-marca img{height:38px;width:auto}
 
-.bio-conteudo{margin:auto 0;width:100%;max-width:640px;padding-top:44px}
+/* hero + formulário na mesma seção: coluna única no celular, duas colunas no desktop */
+.bio-grid{margin:auto 0;width:100%;max-width:1180px;padding-top:36px;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;gap:36px}
+.bio-conteudo{width:100%;max-width:640px}
 .bio-conteudo > *{opacity:0;animation:aparecer 1s var(--curva) forwards}
 .bio-conteudo > :nth-child(1){animation-delay:.15s}
 .bio-conteudo > :nth-child(2){animation-delay:.3s}
 .bio-conteudo > :nth-child(3){animation-delay:.45s}
 .bio-conteudo > :nth-child(4){animation-delay:.55s}
 .bio-conteudo > :nth-child(5){animation-delay:.7s}
+.bio-form{width:100%;max-width:560px;text-align:left;opacity:0;animation:aparecer 1s .85s var(--curva) forwards}
 @keyframes aparecer{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 /* segmentos: só texto, separados por filetes dourados */
@@ -119,17 +122,6 @@ h1,h2{font-family:var(--fonte-titulo);font-weight:300;margin:0;color:var(--cor-p
 /* =========================================================
    FORMULÁRIO
    ========================================================= */
-#contato{
-  position:relative;overflow:hidden;padding:clamp(64px, 9vw, 112px) 0;
-  background:
-    radial-gradient(ellipse 70% 55% at 12% 28%, rgba(43,18,57,.95), rgba(43,18,57,0) 70%),
-    var(--cor-vinho);
-}
-.contato-wrap{width:100%;max-width:calc(560px + var(--margem) * 2);margin:0 auto;padding:0 var(--margem)}
-.contato-intro{text-align:center;margin-bottom:32px}
-.contato-intro h2{font-size:clamp(28px, 7vw, 40px);line-height:1.14;margin-bottom:14px}
-.contato-intro p{color:var(--cor-perola-suave);max-width:36ch;margin:0 auto}
-
 .form-contato{
   display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:14px 14px;color-scheme:dark;
   background:rgba(20,5,16,.66);border:1px solid rgba(216,169,109,.2);border-radius:6px;
@@ -187,6 +179,22 @@ body .flatpickr-day.flatpickr-disabled,body .flatpickr-day.flatpickr-disabled:ho
 /* =========================================================
    RESPONSIVO
    ========================================================= */
+@media (min-width:960px){
+  .bio-grid{grid-template-columns:minmax(0,1fr) minmax(0,480px);align-items:center;justify-items:stretch;gap:clamp(40px, 5vw, 96px);padding-top:28px}
+  .bio-conteudo{text-align:left;max-width:none}
+  .segmentos{justify-content:start;margin-left:0}
+  .segmentos li:first-child{padding-left:0}
+  .bio-hero h1{font-size:clamp(38px, 4vw, 60px)}
+  .traco-dourado{margin-left:0}
+  .bio-sub{margin-left:0}
+  .bio-form{max-width:none}
+}
+/* coluna de texto estreita: segmentos em 2x2 (só em telas largas cabem os 4 na mesma linha) */
+@media (min-width:960px) and (max-width:1439px){
+  .segmentos{grid-template-columns:repeat(2, auto)}
+  .segmentos li:nth-child(2)::after{display:none}
+  .segmentos li:nth-child(odd){padding-left:0}
+}
 @media (max-width:560px){
   /* formulário compacto: data e nº de convidados lado a lado */
   .form-contato{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:12px 10px;padding:18px 16px}

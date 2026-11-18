@@ -40,27 +40,23 @@ const segmentos = ['Debutantes', 'Aniversários', 'Casamentos', 'Corporativos'];
         <img src={`${cdn}/logo-fairbanks.svg`} alt="Espaço Fairbanks" width="358" height="84" />
       </div>
 
-      <div class="bio-conteudo">
-        <ul class="segmentos">
-          {segmentos.map((s) => <li>{s}</li>)}
-        </ul>
-        <h1 id="bio-titulo">
-          <span class="t-leve">O espaço ideal para celebrar</span>
-          <span class="t-destaque">na Vila Olímpia</span>
-        </h1>
-        <span class="traco-dourado" aria-hidden="true"></span>
-        <p class="bio-sub">Estrutura completa e gastronomia para tornar cada comemoração única</p>
-        <a class="btn btn-contorno" href={siteUrl} target="_blank" rel="noopener">Conheça o nosso site</a>
-      </div>
-    </section>
-
-    <section id="contato">
-      <div class="contato-wrap">
-        <div class="contato-intro">
-          <h2><span class="t-leve">Fale com</span><span class="t-destaque">a nossa equipe</span></h2>
-          <p>Conte um pouco sobre os seus planos. Nossa equipe entrará em contato!</p>
+      <div class="bio-grid">
+        <div class="bio-conteudo">
+          <ul class="segmentos">
+            {segmentos.map((s) => <li>{s}</li>)}
+          </ul>
+          <h1 id="bio-titulo">
+            <span class="t-leve">O espaço ideal para celebrar</span>
+            <span class="t-destaque">na Vila Olímpia</span>
+          </h1>
+          <span class="traco-dourado" aria-hidden="true"></span>
+          <p class="bio-sub">Estrutura completa e gastronomia para tornar cada comemoração única</p>
+          <a class="btn btn-contorno" href={siteUrl} target="_blank" rel="noopener">Conheça o nosso site</a>
         </div>
-        <FormContato />
+
+        <div class="bio-form" id="contato">
+          <FormContato />
+        </div>
       </div>
     </section>
   </main>
