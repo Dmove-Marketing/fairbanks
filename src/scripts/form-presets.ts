@@ -89,10 +89,19 @@ export const funnelPreset: Record<string, keyof typeof formPresets> = {
   'eventos-corporativos-confraternizacoes': 'corporativo',
 };
 
-// omit: nomes canônicos de campos que ESTE cliente não usa (config.json > forms.lead-form.omit_fields).
-// O campo some do formulário e deixa de ser validado/enviado; o restante do padrão não muda.
-export function getPreset(name?: string, omit: string[] = []): PresetField[] {
+// Ajustes por cliente, vindos do config.json > forms.lead-form:
+// - omit: nomes canônicos de campos que o cliente não usa (omit_fields). O campo some do formulário
+//   e deixa de ser validado/enviado.
+// - tipos: lista própria de "Tipo de evento" (tipo_evento_options), no lugar da lista padrão.
+//   O placeholder "Selecione..." é mantido; `value` é o que chega ao n8n.
+export function getPreset(name?: string, omit: string[] = [], tipos: { value: string; label: string }[] = []): PresetField[] {
   const key = (name as keyof typeof formPresets) || 'social';
-  const fields = formPresets[key] || formPresets.social;
-  return omit.length ? fields.filter((f) => !omit.includes(f.name)) : fields;
+  let fields = formPresets[key] || formPresets.social;
+  if (omit.length) fields = fields.filter((f) => !omit.includes(f.name));
+  if (tipos.length) {
+    fields = fields.map((f) =>
+      f.name === 'tipo_evento' ? { ...f, options: [...(f.options || []).filter((o) => o.disabled), ...tipos] } : f,
+    );
+  }
+  return fields;
 }

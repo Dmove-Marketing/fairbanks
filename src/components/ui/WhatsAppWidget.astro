@@ -23,7 +23,10 @@ const {
 
 // Campos que ESTE cliente não usa (config.json > forms.lead-form.omit_fields): a pergunta some do roteiro.
 // Os nomes canônicos do formulário valem aqui também (data_evento, convidados...).
-const omit: string[] = (config.forms['lead-form'] as { omit_fields?: string[] })?.omit_fields ?? [];
+const leadCfg = config.forms['lead-form'] as { omit_fields?: string[]; tipo_evento_options?: { value: string; label: string }[] };
+const omit: string[] = leadCfg?.omit_fields ?? [];
+// Lista própria de tipos de evento do cliente (config.json > forms.lead-form.tipo_evento_options)
+const tiposEvento = leadCfg?.tipo_evento_options?.length ? leadCfg.tipo_evento_options : tipoEventoOptions;
 
 // Roteiro da conversa: uma pergunta por campo (estilo Captura Web / Voe)
 const todosCampos = [
@@ -33,7 +36,7 @@ const todosCampos = [
   { key: 'nome', type: 'text', label: 'Pra começar, qual é o seu nome? 😊', placeholder: 'Seu nome' },
   { key: 'tel', type: 'phone', label: 'Qual é o seu WhatsApp com DDD?', placeholder: '(11) 99999-9999' },
   { key: 'email', type: 'email', label: 'E o seu e-mail?', placeholder: 'seu@email.com' },
-  { key: 'tipo_evento', type: 'select', label: 'Que tipo de evento você quer celebrar? 🥂', options: tipoEventoOptions },
+  { key: 'tipo_evento', type: 'select', label: 'Que tipo de evento você quer celebrar? 🥂', options: tiposEvento },
   { key: 'data_evento', type: 'date', label: 'Qual é a data prevista do evento? 📅', placeholder: 'dd/mm/aaaa' },
   { key: 'convidados', type: 'number', label: 'E quantos convidados, aproximadamente?', placeholder: 'Ex: 150', chips: ['50', '100', '150', '200', '300'] },
 ];

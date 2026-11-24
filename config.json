@@ -19,6 +19,15 @@
       "id": "lead-form",
       "preset": "social",
       "omit_fields": ["data_evento", "convidados"],
+      "tipo_evento_options": [
+        { "value": "15 Anos", "label": "15 Anos" },
+        { "value": "Evento Corporativo", "label": "Evento Corporativo" },
+        { "value": "Casamento", "label": "Casamento" },
+        { "value": "Aniversario Adulto", "label": "Aniversário Adulto" },
+        { "value": "Aniversario", "label": "Aniversário" },
+        { "value": "Outros", "label": "Outros" },
+        { "value": "Bodas", "label": "Bodas" }
+      ],
       "redirect_on_success": "",
       "webhooks": [
         "https://server3n8n.dmove.com.br/webhook/fairbanks"

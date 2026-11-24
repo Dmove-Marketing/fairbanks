@@ -6,7 +6,8 @@ import config from '../../config.json';
 import { getPreset } from '../scripts/form-presets';
 
 const lead = config.forms['lead-form'];
-const preset = getPreset(lead.preset, (lead as { omit_fields?: string[] }).omit_fields);
+const overrides = lead as { omit_fields?: string[]; tipo_evento_options?: { value: string; label: string }[] };
+const preset = getPreset(lead.preset, overrides.omit_fields, overrides.tipo_evento_options);
 
 // Ordem e grid do design. Campo que não estiver aqui (ex.: novo no preset) vai para o fim, em linha inteira.
 const ordem = ['empresa', 'nome', 'telefone', 'email', 'data_evento', 'convidados', 'tipo_evento', 'detalhes_adicionais'];
@@ -35,7 +36,7 @@ const extras: Record<string, Record<string, string>> = {
   email: { autocomplete: 'email' },
   convidados: { min: '1', step: '1', inputmode: 'numeric' },
 };
-// Opcional: valor do tipo de evento já selecionado (ex.: LP de 15 anos abre em "Aniversario debutante").
+// Opcional: valor do tipo de evento já selecionado (ex.: LP de 15 anos abre em "15 Anos").
 // Sem a prop, o select abre no placeholder "Selecione o tipo de evento".
 interface Props {
   tipoPadrao?: string;

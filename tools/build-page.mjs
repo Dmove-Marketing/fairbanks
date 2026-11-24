@@ -50,7 +50,7 @@ let body = pick(/<body>([\s\S]*?)<\/body>/, '<body>').replace(/<script>[\s\S]*?<
 // 1) formulário do design -> componente padrão
 const formRe = /[ \t]*<!-- Envio e integração[\s\S]*?<\/form>/;
 if (!formRe.test(body)) throw new Error('Formulário do design não encontrado (marcador "Envio e integração").');
-body = body.replace(formRe, '    <FormContato tipoPadrao="Aniversario debutante" />');
+body = body.replace(formRe, '    <FormContato tipoPadrao="15 Anos" />');
 
 // 2) imagens locais -> CDN (jpg/png viram .webp; svg/webp mantêm a extensão)
 body = body.replace(/src="imagens\/([^"]+?)\.(jpe?g|png)"/g, (_, nome) => 'src={`${cdn}/' + nome + '.webp`}');
