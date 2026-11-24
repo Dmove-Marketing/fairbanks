@@ -6,7 +6,7 @@ import config from '../../config.json';
 import { getPreset } from '../scripts/form-presets';
 
 const lead = config.forms['lead-form'];
-const preset = getPreset(lead.preset);
+const preset = getPreset(lead.preset, (lead as { omit_fields?: string[] }).omit_fields);
 
 // Ordem e grid do design. Campo que não estiver aqui (ex.: novo no preset) vai para o fim, em linha inteira.
 const ordem = ['empresa', 'nome', 'telefone', 'email', 'data_evento', 'convidados', 'tipo_evento', 'detalhes_adicionais'];
@@ -127,8 +127,8 @@ const attrsFor = (f: (typeof campos)[number]) => ({
 <style>
   .contato-form { min-width: 0; }
 
-  /* rótulos do preset podem quebrar em 2 linhas no celular ("Número de convidados"):
-     alinha os campos da mesma linha pela base para os inputs não ficarem desencontrados */
+  /* rótulos de campos na mesma linha podem quebrar em 2 linhas no celular:
+     alinha pela base para os inputs não ficarem desencontrados */
   .form-contato { align-items: end; }
 
   .hp {

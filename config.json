@@ -18,6 +18,7 @@
     "lead-form": {
       "id": "lead-form",
       "preset": "social",
+      "omit_fields": ["data_evento", "convidados"],
       "redirect_on_success": "",
       "webhooks": [
         "https://server3n8n.dmove.com.br/webhook/fairbanks"

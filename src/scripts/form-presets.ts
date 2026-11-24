@@ -89,7 +89,10 @@ export const funnelPreset: Record<string, keyof typeof formPresets> = {
   'eventos-corporativos-confraternizacoes': 'corporativo',
 };
 
-export function getPreset(name?: string): PresetField[] {
+// omit: nomes canônicos de campos que ESTE cliente não usa (config.json > forms.lead-form.omit_fields).
+// O campo some do formulário e deixa de ser validado/enviado; o restante do padrão não muda.
+export function getPreset(name?: string, omit: string[] = []): PresetField[] {
   const key = (name as keyof typeof formPresets) || 'social';
-  return formPresets[key] || formPresets.social;
+  const fields = formPresets[key] || formPresets.social;
+  return omit.length ? fields.filter((f) => !omit.includes(f.name)) : fields;
 }
