@@ -21,8 +21,12 @@ const {
   showEmpresaField = false,
 } = Astro.props;
 
+// Campos que ESTE cliente não usa (config.json > forms.lead-form.omit_fields): a pergunta some do roteiro.
+// Os nomes canônicos do formulário valem aqui também (data_evento, convidados...).
+const omit: string[] = (config.forms['lead-form'] as { omit_fields?: string[] })?.omit_fields ?? [];
+
 // Roteiro da conversa: uma pergunta por campo (estilo Captura Web / Voe)
-const fields = [
+const todosCampos = [
   ...(showEmpresaField
     ? [{ key: 'empresa', type: 'text', label: 'Qual é o nome da sua empresa?', placeholder: 'Nome da empresa' }]
     : []),
@@ -33,6 +37,7 @@ const fields = [
   { key: 'data_evento', type: 'date', label: 'Qual é a data prevista do evento? 📅', placeholder: 'dd/mm/aaaa' },
   { key: 'convidados', type: 'number', label: 'E quantos convidados, aproximadamente?', placeholder: 'Ex: 150', chips: ['50', '100', '150', '200', '300'] },
 ];
+const fields = todosCampos.filter((f) => !omit.includes(f.key));
 
 const introMessages = [
   `Olá! 👋 Bem-vindo(a) à ${displayName}.`,
@@ -408,8 +413,8 @@ const introMessages = [
       Nome: a.nome?.value || '',
       WhatsApp: a.tel?.value || '',
       'E-mail': a.email?.value || '',
-      'Data do evento': a.data_evento?.value || '',
-      Convidados: a.convidados?.value || '',
+      ...(a.data_evento ? { 'Data do evento': a.data_evento.value } : {}),
+      ...(a.convidados ? { Convidados: a.convidados.value } : {}),
       'Tipo de evento': a.tipo_evento?.value || '',
       Fonte: pageSource,
       Data: now.toLocaleDateString('pt-BR'),
